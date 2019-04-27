@@ -60,13 +60,11 @@
                     <label for="description">Product Description</label>
                     <textarea name="description" class="form-control" id="description" rows="5" col="10" placeholder="Enter Descrpition for your product here"> </textarea>
                 </div>
+                <label for="fileToUpload">Product Image</label>
                 <div class="form-group">
-                    <label for="image"> Product Image</label>
-
-                    <div class="custom-file">
-                        <input type="file" accept="image/*" name="image" class="custom-file-input" id="image" aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="image">Choose file</label>
-                    </div>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <!-- <input type="file" name="productImage" class="custom-file-input" id="productImage" aria-describedby="inputGroupFileAddon01"> -->
+                    <!-- <label class="custom-file-label" for="productImage">Choose file</label> -->
                 </div>
                 <button type="submit" class="btn btn-primary">Add Product</button>
             </form>
