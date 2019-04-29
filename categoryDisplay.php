@@ -8,6 +8,8 @@
     <title>Home</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/reset.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,24 +39,25 @@
         }
     }
     ?>
-    <div class="body">
+
+    <div class="d-flex" id="wrapper">
         <?php include("side-bar.php") ?>
-        <div class="main-content">
-            <div class="products-block">
-                <div class="block-title">
-                    <p class="block-title-text"> <?php echo $category ?> </p>
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <p class="display-4"> <?php echo $category ?> </p>
                 </div>
-                <div class="products-area">
+                <div class="row">
                     <?php
                     $sql = "SELECT * FROM productinformation WHERE productCategoryId=$sid";
                     $result = mysqli_query($connection, $sql);
                     $select = "";
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $select .= '<div class="product">';
+                        $select .= '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">';
                         $select .= '<a href="./productDetails.php?id=' . $row['id'] . '">';
-                        $select .= '<img src=".' . $row['productImage'] . '" class="product-image" alt="Shirt"><br>';
-                        $select .= '<span>' . $row['productName'] . '</span><br>';
-                        $select .= '<span> Rs. ' . $row['productPrice'] . '</span><br>';
+                        $select .= '<img src=".' . $row['productImage'] . '" class="product-image rounded mx-auto d-block" alt="Shirt">';
+                        $select .= '<p class="text-center text-dark">' . $row['productName'] . '</p>';
+                        $select .= '<p class="text-center text-dark"> Rs. ' . $row['productPrice'] . '</p>';
                         $select .= '</a></div>';
                     }
                     echo $select;
@@ -64,6 +67,9 @@
         </div>
     </div>
     <?php include("footer.php") ?>
+    <!-- Bootstrap core JavaScript -->
+    <script src="css/jquery/jquery.min.js"></script>
+    <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
