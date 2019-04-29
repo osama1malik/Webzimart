@@ -11,7 +11,15 @@
 </head>
 
 <body>
-    <?php include("header.php"); ?>
+    <?php
+    include("header.php");
+    require_once("connection.php");
+    $connection = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBNAME);
+    if (mysqli_connect_error()) {
+        die(mysqli_connect_error());
+    } else { }
+
+    ?>
     <div class="body">
         <?php include("side-bar.php") ?>
         <div class="main-content">
@@ -36,34 +44,21 @@
                     <p class="block-title-text"> Shirts </p>
                 </div>
                 <div class="products-area">
-                    <div class="product">
-                        <a href="./shirt-detail-1.php">
-                            <img src="./images/shirt-1.jpg" class="product-image" alt="Shirt"><br>
-                            <span>T-Shirt</span><br>
-                            <span>Rs 2000</span>
-                        </a>
-                    </div>
-                    <div class="product">
-                        <a href="./shirt-detail-1.php">
-                            <img src="./images/shirt-1.jpg" class="product-image" alt="Shirt"><br>
-                            <span>T-Shirt</span><br>
-                            <span>Rs 2000</span>
-                        </a>
-                    </div>
-                    <div class="product">
-                        <a href="./shirt-detail-1.php">
-                            <img src="./images/shirt-1.jpg" class="product-image" alt="Shirt"><br>
-                            <span>T-Shirt</span><br>
-                            <span>Rs 2000</span>
-                        </a>
-                    </div>
-                    <div class="product">
-                        <a href="./shirt-detail-1.php">
-                            <img src="./images/shirt-1.jpg" class="product-image" alt="Shirt"><br>
-                            <span>T-Shirt</span><br>
-                            <span>Rs 2000</span>
-                        </a>
-                    </div>
+
+                    <?php
+                    $sql = "SELECT productName, productPrice, productImage, productCategoryId FROM productinformation WHERE productCategoryId=1 ORDER BY dateAdded";
+                    $result = mysqli_query($connection, $sql);
+                    $select = "";
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $select .= '<div class="product">';
+                        $select .= '<a href="./shirt-detail-1.php">';
+                        $select .= '<img src=".'. $row['productImage'] .'" class="product-image" alt="Shirt"><br>';
+                        $select .= '<span>' . $row['productName'] . '</span><br>';
+                        $select .= '<span> Rs. ' . $row['productPrice'] . '</span><br>';
+                        $select .= '</a></div>';
+                    }
+                    echo $select;
+                    ?>
                 </div>
             </div>
             <div class="products-block">
@@ -71,34 +66,20 @@
                     <p class="block-title-text"> Pents </p>
                 </div>
                 <div class="products-area">
-                    <div class="product">
-                        <a href="./pent-detail-1.php">
-                            <img src="./images/pent-1.jpg" class="product-image" alt="Shirt"><br>
-                            <span>Jeans Pent</span><br>
-                            <span>Rs 2000</span>
-                        </a>
-                    </div>
-                    <div class="product">
-                        <a href="./pent-detail-1.php">
-                            <img src="./images/pent-1.jpg" class="product-image" alt="Shirt"><br>
-                            <span>Jeans Pent</span><br>
-                            <span>Rs 2000</span>
-                        </a>
-                    </div>
-                    <div class="product">
-                        <a href="./pent-detail-1.php">
-                            <img src="./images/pent-1.jpg" class="product-image" alt="Shirt"><br>
-                            <span>Jeans Pent</span><br>
-                            <span>Rs 2000</span>
-                        </a>
-                    </div>
-                    <div class="product">
-                        <a href="./pent-detail-1.php">
-                            <img src="./images/pent-1.jpg" class="product-image" alt="Shirt"><br>
-                            <span>Jeans Pent</span><br>
-                            <span>Rs 2000</span>
-                        </a>
-                    </div>
+                    <?php
+                    $sql = "SELECT productName, productPrice, productImage, productCategoryId FROM productinformation WHERE productCategoryId=2 ORDER BY dateAdded";
+                    $result = mysqli_query($connection, $sql);
+                    $select = "";
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $select .= '<div class="product">';
+                        $select .= '<a href="./shirt-detail-1.php">';
+                        $select .= '<img src=".'. $row['productImage'] .'" class="product-image" alt="Shirt"><br>';
+                        $select .= '<span>' . $row['productName'] . '</span><br>';
+                        $select .= '<span> Rs. ' . $row['productPrice'] . '</span><br>';
+                        $select .= '</a></div>';
+                    }
+                    echo $select;
+                    ?>
                 </div>
             </div>
         </div>
