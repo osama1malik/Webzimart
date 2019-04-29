@@ -8,6 +8,8 @@
     <title>Home</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/reset.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -50,12 +52,12 @@
         }
     }
     ?>
-    <div class="body">
+    <div class="d-flex" id="wrapper">
         <?php include("side-bar.php"); ?>
-        <div class="main-content">
-            <div class="products-block">
-                <div class="block-title">
-                    <p class="block-title-text">
+        <div class="container">
+            <div class="">
+                <div class="row">
+                    <p class="display-4">
                         <?php
                         $sql = "SELECT category FROM productcategory WHERE id = $categoryId ORDER BY category";
                         $result = mysqli_query($connection, $sql);
@@ -67,14 +69,14 @@
                         ?>
                     </p>
                 </div>
-                <div class="products-area">
+                <div class="row">
                     <div class="product-detail">
-                        <img src=".<?php echo $image ?>" class="product-image" alt="Shirt">
-                        <div class="product-detail-text">
-                            <span class="product-detail-text-heading"><?php echo $name ?></span><br>
-                            <span class="product-detail-text-price">Rs <?php echo $productPrice ?></span> <br>
-                            <span class="product-detail-text-information"><?php echo $description ?></span>
-                            <button class="addToCart">Add to Cart</button>
+                        <img src=".<?php echo $image ?>" class="col-lg-6 rounded mx-auto d-block" alt="Shirt">
+                        <div class="col-lg-12">
+                            <span class="h3"><?php echo $name ?></span><br>
+                            <span class="h4">Rs <?php echo $productPrice ?></span> <br>
+                            <span class="lead"><?php echo $description ?></span><br>
+                            <button class="btn btn-outline-secondary">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -82,6 +84,9 @@
         </div>
     </div>
     <?php include("footer.php"); ?>
+    <!-- Bootstrap core JavaScript -->
+    <script src="css/jquery/jquery.min.js"></script>
+    <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
