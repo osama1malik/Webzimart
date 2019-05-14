@@ -4,22 +4,18 @@ $connection = mysqli_connect(DBHOST, DBUSER, DBPASSWORD, DBNAME);
 if (mysqli_connect_error()) {
     die(mysqli_connect_error());
 } else { }
-
-
-
 ?>
-<div class="sidebar">
-    <h4 class="sidebar-heading">Categories</h4>
-    <ul>
+<div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">Categories</div>
+    <div class="list-group list-group-flush">
         <?php
-        $sql = "SELECT category FROM productcategory ORDER BY category";
+        $sql = "SELECT * FROM productcategory ORDER BY category";
         $result = mysqli_query($connection, $sql);
         $select = "";
         while ($row = mysqli_fetch_assoc($result)) {
-            $select .= '<li><a href="./' . $row['category'] . '.php">' . $row['category'] . '</a></li>';
+            $select .= '<a class="list-group-item list-group-item-action bg-light" href="./categoryDisplay.php?id='. $row['id'] . '&category='. $row['category'] .'">' . $row['category'] . '</a>';
         }
         echo $select;
         ?>
-    </ul>
+    </div>
 </div>
-<div class="clear"></div>

@@ -8,6 +8,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
@@ -20,9 +21,9 @@
     } else { }
 
     ?>
-    <div class="body">
+    <div class="d-flex" id="wrapper">
         <?php include("side-bar.php") ?>
-        <div class="main-content">
+        <div class="container-fluid">
             <div class="slideshow-container">
 
                 <div class="mySlides fade">
@@ -39,43 +40,44 @@
                 <span class="dot"></span>
                 <span class="dot"></span>
             </div>
+
             <div class="products-block">
                 <div class="block-title">
-                    <p class="block-title-text"> Shirts </p>
+                    <p class="display-4"> Shirts </p>
                 </div>
-                <div class="products-area">
-
+                <div class="row">
                     <?php
-                    $sql = "SELECT productName, productPrice, productImage, productCategoryId FROM productinformation WHERE productCategoryId=1 ORDER BY dateAdded";
+                    $sql = "SELECT id, productName, productPrice, productImage, productCategoryId FROM productinformation WHERE productCategoryId=1 ORDER BY dateAdded";
                     $result = mysqli_query($connection, $sql);
                     $select = "";
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $select .= '<div class="product">';
-                        $select .= '<a href="./shirt-detail-1.php">';
-                        $select .= '<img src=".'. $row['productImage'] .'" class="product-image" alt="Shirt"><br>';
-                        $select .= '<span>' . $row['productName'] . '</span><br>';
-                        $select .= '<span> Rs. ' . $row['productPrice'] . '</span><br>';
+                        $select .= '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">';
+                        $select .= '<a href="./productDetails.php?id=' . $row['id'] . '">';
+                        $select .= '<img src=".' . $row['productImage'] . '" class="product-image rounded mx-auto d-block" alt="Shirt">';
+                        $select .= '<p class="text-center text-dark">' . $row['productName'] . '</p>';
+                        $select .= '<p class="text-center text-dark"> Rs. ' . $row['productPrice'] . '</p>';
                         $select .= '</a></div>';
                     }
                     echo $select;
                     ?>
                 </div>
             </div>
+
             <div class="products-block">
                 <div class="block-title">
-                    <p class="block-title-text"> Pents </p>
+                    <p class="display-4"> Pents </p>
                 </div>
-                <div class="products-area">
+                <div class="row">
                     <?php
-                    $sql = "SELECT productName, productPrice, productImage, productCategoryId FROM productinformation WHERE productCategoryId=2 ORDER BY dateAdded";
+                    $sql = "SELECT id, productName, productPrice, productImage, productCategoryId FROM productinformation WHERE productCategoryId=2 ORDER BY dateAdded";
                     $result = mysqli_query($connection, $sql);
                     $select = "";
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $select .= '<div class="product">';
-                        $select .= '<a href="./shirt-detail-1.php">';
-                        $select .= '<img src=".'. $row['productImage'] .'" class="product-image" alt="Shirt"><br>';
-                        $select .= '<span>' . $row['productName'] . '</span><br>';
-                        $select .= '<span> Rs. ' . $row['productPrice'] . '</span><br>';
+                        $select .= '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">';
+                        $select .= '<a href="./productDetails.php?id=' . $row['id'] . '">';
+                        $select .= '<img src=".' . $row['productImage'] . '" class="product-image rounded mx-auto d-block" alt="Shirt">';
+                        $select .= '<p class="text-center text-dark">' . $row['productName'] . '</p>';
+                        $select .= '<p class="text-center text-dark"> Rs. ' . $row['productPrice'] . '</p>';
                         $select .= '</a></div>';
                     }
                     echo $select;
